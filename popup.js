@@ -7,24 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const categoryFilter = document.getElementById('categoryFilter');
     const toggleInputBtn = document.getElementById('toggleInputBtn');
     const inputSection = document.getElementById('inputSection');
-
-    // Event-Listener für den Toggle-Button
-    toggleInputBtn.addEventListener('click', () => {
-        inputSection.classList.toggle('hidden');
-        if (inputSection.classList.contains('hidden')) {
-            toggleInputBtn.textContent = 'Neues Snippet hinzufügen';
-        } else {
-            toggleInputBtn.textContent = 'Eingabe verbergen';
-        }
-    });
+    const notification = document.getElementById('notification');
 
     // Funktion zum Speichern eines Snippets
     function saveSnippet(title, content, category) {
-        // Generiere eine einzigartige ID für das Snippet
         const id = Date.now().toString(); 
         const newSnippet = { id, title, content, category };
         
-        // Hole alle gespeicherten Snippets, füge das neue hinzu und speichere sie zurück
         chrome.storage.local.get('snippets', (data) => {
             const snippets = data.snippets || [];
             snippets.push(newSnippet);
@@ -45,27 +34,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Funktion zum Bearbeiten eines Snippets
-    function editSnippet(id, newTitle, newContent) {
-        chrome.storage.local.get('snippets', (data) => {
-            let snippets = data.snippets || [];
-            const snippetToEdit = snippets.find(snippet => snippet.id === id);
-            if (snippetToEdit) {
-                snippetToEdit.title = newTitle;
-                snippetToEdit.content = newContent;
-                chrome.storage.local.set({ snippets }, () => {
-                    renderSnippets();
-                });
-            }
-        });
-    }
-
     // Funktion zum Kopieren eines Textes in die Zwischenablage
     function copyToClipboard(text) {
         navigator.clipboard.writeText(text).then(() => {
-            // Optional: Visuelles Feedback geben
-            console.log('Text erfolgreich in die Zwischenablage kopiert!');
+            notification.textContent = 'Text wurde in die Zwischenablage kopiert!';
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 1500);
         }).catch(err => {
+            notification.textContent = 'Kopieren fehlgeschlagen.';
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 1500);
             console.error('Kopieren fehlgeschlagen:', err);
         });
     }
@@ -96,33 +78,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         copyToClipboard(snippet.content);
                     });
 
-                    const editBtn = document.createElement('button');
-                    editBtn.textContent = 'Bearbeiten';
-                    editBtn.className = 'edit-btn';
-                    editBtn.addEventListener('click', () => {
-                        // Eingabefelder mit den aktuellen Werten befüllen
-                        snippetTitleInput.value = snippet.title;
-                        snippetContentInput.value = snippet.content;
-                        // Button-Text ändern, um Bearbeiten zu signalisieren
-                        addSnippetBtn.textContent = 'Änderungen speichern';
-                        addSnippetBtn.onclick = () => {
-                            editSnippet(snippet.id, snippetTitleInput.value, snippetContentInput.value);
-                            // Button und Event-Listener zurücksetzen
-                            addSnippetBtn.textContent = 'Snippet hinzufügen';
-                            addSnippetBtn.onclick = handleAddSnippet;
-                        };
-                    });
-
+                    // Der "Bearbeiten"-Button wurde entfernt
+                    
                     const deleteBtn = document.createElement('button');
-                    deleteBtn.textContent = 'Löschen';
-                    deleteBtn.className = 'delete-btn';
+                    deleteBtn.textContent = '🗑️'; // Papierkorb-Emoji
+                    deleteBtn.className = 'delete-btn icon-btn';
+                    deleteBtn.title = 'Löschen'; // Tooltip
                     deleteBtn.addEventListener('click', () => {
                         deleteSnippet(snippet.id);
                     });
 
                     snippetDiv.appendChild(titleEl);
                     snippetDiv.appendChild(copyBtn);
-                    snippetDiv.appendChild(editBtn);
                     snippetDiv.appendChild(deleteBtn);
                     snippetList.appendChild(snippetDiv);
                 }
@@ -150,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (title && content) {
             saveSnippet(title, content, category);
-            // Felder nach dem Speichern leeren
             snippetTitleInput.value = '';
             snippetContentInput.value = '';
             snippetCategoryInput.value = '';
@@ -159,8 +125,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Event-Listener
     addSnippetBtn.addEventListener('click', handleAddSnippet);
     categoryFilter.addEventListener('change', renderSnippets);
+
+    // Event-Listener für den Toggle-Button
+    toggleInputBtn.addEventListener('click', () => {
+        inputSection.classList.toggle('hidden');
+        if (inputSection.classList.contains('hidden')) {
+            toggleInputBtn.textContent = 'Neues Snippet hinzufügen';
+        } else {
+            toggleInputBtn.textContent = 'Eingabe verbergen';
+        }
+    });
 
     // Initiales Rendern der Snippets, wenn das Popup geladen wird
     renderSnippets();

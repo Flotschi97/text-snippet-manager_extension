@@ -93,9 +93,11 @@ button:hover {
 }
 
 .snippet-item button {
-    font-size: 12px;
-    padding: 5px 8px;
+    font-size: 14px;
+    padding: 6px 10px;
     margin-left: 5px;
+    height: 32px; /* Setzt eine einheitliche Höhe */
+    box-sizing: border-box; /* Stellt sicher, dass Padding in die Größe einberechnet wird */
 }
 
 .copy-btn {
@@ -121,3 +123,52 @@ button:hover {
 .delete-btn:hover {
     background-color: #c82333;
 }
+
+/* Stil für die neuen Symbol-Buttons */
+.icon-btn {
+    font-size: 16px;
+    width: 32px; /* Setzt eine feste Breite, um die Buttons gleich groß zu machen */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Stil für die Benachrichtigung */
+.notification {
+    display: none; /* Standardmäßig versteckt */
+    position: fixed; /* Fixiert an der oberen Kante */
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+
+
+
+.hidden {
+    display: none;
+}
+
+.toggle-btn {
+    background-color: #6c757d;
+}
+
+.toggle-btn:hover {
+    background-color: #5a6268;
+}
+
+
