@@ -172,3 +172,27 @@ button:hover {
 }
 
 
+.buymeacoffee-btn {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+    .buymeacoffee-btn:hover {
+      transform: translateY(-2px);
+    }
+    .buymeacoffee-btn img {
+      width: 125px;
+    }
+    .privacy-link {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #777;
+      text-decoration: none;
+    }
+    .privacy-link:hover {
+      text-decoration: underline;
+    }
