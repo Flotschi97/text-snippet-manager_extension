@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Snippet Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Meine Text-Snippets</h1>
+
+        <button id="toggleInputBtn" class="toggle-btn">Neues Snippet hinzufügen</button>
+        <div id="inputSection" class="input-section hidden">
+            <input type="text" id="snippetTitle" placeholder="Titel des Snippets">
+            <textarea id="snippetContent" placeholder="Text-Inhalt"></textarea>
+            <input type="text" id="snippetCategory" placeholder="Kategorie (z.B. Mails, Whatsapp)">
+            <button id="addSnippetBtn">Snippet hinzufügen</button>
+        </div>
+
+        <div class="filter-section">
+            <label for="categoryFilter">Kategorie filtern:</label>
+            <select id="categoryFilter">
+                <option value="all">Alle</option>
+            </select>
+        </div>
+
+        <div id="snippetList">
+            </div>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>
