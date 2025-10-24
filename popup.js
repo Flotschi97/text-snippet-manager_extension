@@ -37,18 +37,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Funktion zum Kopieren eines Textes in die Zwischenablage
     function copyToClipboard(text) {
         navigator.clipboard.writeText(text).then(() => {
-            notification.textContent = 'Text wurde in die Zwischenablage kopiert!';
+            notification.textContent = 'Text has been copied to clipboard!';
             notification.style.display = 'block';
             setTimeout(() => {
                 notification.style.display = 'none';
             }, 1500);
         }).catch(err => {
-            notification.textContent = 'Kopieren fehlgeschlagen.';
+            notification.textContent = '!!Copy failed!!.';
             notification.style.display = 'block';
             setTimeout(() => {
                 notification.style.display = 'none';
             }, 1500);
-            console.error('Kopieren fehlgeschlagen:', err);
+            console.error('!!Copy failed!!', err);
         });
     }
 
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const deleteBtn = document.createElement('button');
                     deleteBtn.textContent = '🗑️'; // Papierkorb-Emoji
                     deleteBtn.className = 'delete-btn icon-btn';
-                    deleteBtn.title = 'Löschen'; // Tooltip
+                    deleteBtn.title = 'Delete'; // Tooltip
                     deleteBtn.addEventListener('click', () => {
                         deleteSnippet(snippet.id);
                     });
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // Kategorien für den Filter aktualisieren
-            categoryFilter.innerHTML = '<option value="all">Alle</option>';
+            categoryFilter.innerHTML = '<option value="all">All</option>';
             categories.forEach(category => {
                 if (category !== 'all') {
                     const option = document.createElement('option');
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleAddSnippet() {
         const title = snippetTitleInput.value.trim();
         const content = snippetContentInput.value.trim();
-        const category = snippetCategoryInput.value.trim() || 'Unkategorisiert';
+        const category = snippetCategoryInput.value.trim() || 'Uncategorized';
 
         if (title && content) {
             saveSnippet(title, content, category);
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
             snippetContentInput.value = '';
             snippetCategoryInput.value = '';
         } else {
-            alert('Bitte gib einen Titel und einen Inhalt ein!');
+            alert('Please enter a title and content!');
         }
     }
 
@@ -133,9 +133,9 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleInputBtn.addEventListener('click', () => {
         inputSection.classList.toggle('hidden');
         if (inputSection.classList.contains('hidden')) {
-            toggleInputBtn.textContent = 'Neues Snippet hinzufügen';
+            toggleInputBtn.textContent = 'Add new snippet';
         } else {
-            toggleInputBtn.textContent = 'Eingabe verbergen';
+            toggleInputBtn.textContent = 'Hide input';
         }
     });
 
