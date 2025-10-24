@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Text Snippet Manager",
   "version": "1.0",
-  "description": "Speichere und verwalte Text-Snippets für schnelles Kopieren.",
+  "description": "Save, organize, and quickly copy your frequently used text snippets and templates.",
   "permissions": [
     "storage"
   ],

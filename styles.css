@@ -196,3 +196,45 @@ button:hover {
     .privacy-link:hover {
       text-decoration: underline;
     }
+
+
+
+
+
+    /* Zusätzliche Styles für Drag-and-Drop */
+.snippet-item {
+    /* macht das Element verschiebbar */
+    cursor: grab; 
+}
+
+.snippet-item.dragging {
+    /* Der gezogene Gegenstand */
+    opacity: 0.5;
+    border: 2px dashed #007bff;
+}
+
+.snippet-item.drag-over-top {
+    /* Visuelle Markierung, wenn über einem Element gezogen wird, um es darüber zu platzieren */
+    border-top: 3px solid #007bff;
+}
+
+.snippet-item.drag-over-bottom {
+    /* Visuelle Markierung, wenn über einem Element gezogen wird, um es darunter zu platzieren */
+    border-bottom: 3px solid #007bff;
+}
+
+/* Entfernt den Cursor für die Buttons, da das gesamte Element verschiebbar ist */
+.snippet-item button {
+    cursor: pointer; 
+}
+
+
+
+/* Stil für den neuen Bearbeiten-Button */
+.edit-btn {
+    background-color: #ffc107; /* Gelb */
+}
+
+.edit-btn:hover {
+    background-color: #e0a800;
+}
