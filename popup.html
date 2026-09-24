@@ -8,7 +8,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>My templates</h1>
+        <header class="app-header">
+            <div>
+                <p class="eyebrow">TEXT SNIPPET MANAGER</p>
+                <h1>My templates</h1>
+            </div>
+            <span class="header-mark" aria-hidden="true">Aa</span>
+        </header>
 
         <button id="toggleInputBtn" class="toggle-btn">Add new template</button>
         <div id="inputSection" class="input-section hidden">
@@ -26,15 +32,16 @@
         </div>
 
         <div id="snippetList">
-            </div>
-    </div>
-    <a href="https://buymeacoffee.com/flotschi_97" target="_blank" class="buymeacoffee-btn">
-      <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy me a coffee">
-    </a>
-    <a href="https://curionics.netlify.app/privacy-extensions.html" target="_blank" class="privacy-link">Datenschutz/Privacy</a>
-    <script src="popup.js"></script>
-</body>
-<div id="notification" class="notification">Text has been copied!</div>
+        </div>
 
-    <div class="container">
+        <footer class="app-footer">
+            <a href="https://buymeacoffee.com/flotschi_97" target="_blank" rel="noopener noreferrer" class="buymeacoffee-btn">
+                <span aria-hidden="true">☕</span> Buy me a coffee
+            </a>
+            <a href="https://curionics.netlify.app/privacy-extensions.html" target="_blank" rel="noopener noreferrer" class="privacy-link">Datenschutz / Privacy</a>
+        </footer>
+    </div>
+    <script src="popup.js"></script>
+    <div id="notification" class="notification">Text has been copied!</div>
+</body>
 </html>

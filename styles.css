@@ -1,68 +1,48 @@
+:root {
+    --ink: #263238;
+    --muted: #6b777c;
+    --line: #dce4e5;
+    --surface: #ffffff;
+    --canvas: #f3f6f5;
+    --accent: #157a78;
+    --accent-dark: #0e625f;
+}
+
+* { box-sizing: border-box; }
+
 body {
-    font-family: Arial, sans-serif;
     width: 400px;
-    padding: 15px;
-    background-color: #f4f4f9;
-    color: #333;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(145deg, #f7faf9 0%, var(--canvas) 100%);
+    color: var(--ink);
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    font-size: 13px;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
+.container { display: flex; flex-direction: column; gap: 14px; }
 
-h1 {
-    font-size: 20px;
-    color: #555;
-    text-align: center;
-    margin-bottom: 10px;
-}
+.app-header { display: flex; align-items: center; justify-content: space-between; }
+.eyebrow { margin: 0 0 4px; color: var(--accent); font-size: 10px; font-weight: bold; letter-spacing: 1.4px; }
+h1 { margin: 0; font-size: 23px; letter-spacing: -0.4px; }
+.header-mark { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid #b9d5d3; border-radius: 10px; color: var(--accent); background: #e6f2f0; font-family: Georgia, serif; font-size: 18px; font-weight: bold; }
 
-.input-section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+.input-section { display: flex; flex-direction: column; gap: 9px; padding: 13px; border: 1px solid var(--line); border-radius: 10px; background: rgba(255, 255, 255, 0.75); }
 
-input[type="text"], textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box; /* Wichtig für die korrekte Breite */
-}
+input[type="text"], textarea, #categoryFilter { width: 100%; padding: 9px 10px; border: 1px solid #cbd7d8; border-radius: 7px; background: var(--surface); color: var(--ink); font: inherit; }
+input[type="text"]:focus, textarea:focus, #categoryFilter:focus { outline: 2px solid rgba(21, 122, 120, 0.25); border-color: var(--accent); }
 
-textarea {
-    resize: vertical;
-    height: 80px;
-}
+textarea { height: 80px; resize: vertical; }
 
-button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #fff;
-    background-color: #007bff;
-    transition: background-color 0.2s ease;
-}
+button { padding: 9px 13px; border: 0; border-radius: 7px; cursor: pointer; font: inherit; font-weight: bold; color: #fff; background: var(--accent); transition: background-color 0.2s ease, transform 0.2s ease; }
+button:hover { background: var(--accent-dark); transform: translateY(-1px); }
 
-button:hover {
-    background-color: #0056b3;
-}
-
-.filter-section {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+.filter-section { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 10px; color: var(--muted); font-size: 12px; font-weight: bold; }
 
 #categoryFilter {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 7px 9px;
+    color: var(--ink);
+    font-weight: normal;
 }
 
 #snippetList {
@@ -71,20 +51,12 @@ button:hover {
     gap: 10px;
 }
 
-.snippet-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    padding: 10px;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
+.snippet-item { display: flex; align-items: center; gap: 6px; padding: 10px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); box-shadow: 0 3px 10px rgba(38, 50, 56, 0.06); cursor: grab; }
 
 .snippet-item h3 {
-    margin: 0;
-    font-size: 16px;
+    min-width: 0;
+    margin: 0 auto 0 0;
+    font-size: 14px;
     font-weight: normal;
     white-space: nowrap;
     overflow: hidden;
@@ -92,63 +64,32 @@ button:hover {
     flex-grow: 1;
 }
 
-.snippet-item button {
-    font-size: 14px;
-    padding: 6px 10px;
-    margin-left: 5px;
-    height: 32px; /* Setzt eine einheitliche Höhe */
-    box-sizing: border-box; /* Stellt sicher, dass Padding in die Größe einberechnet wird */
-}
+.snippet-item button { flex: 0 0 auto; height: 31px; padding: 5px 9px; font-size: 12px; }
 
-.copy-btn {
-    background-color: #28a745;
-}
+.copy-btn { background: #278b75; }
 
 .copy-btn:hover {
-    background-color: #218838;
+    background: #1d725f;
 }
 
-.edit-btn {
-    background-color: #ffc107;
-}
+.edit-btn { background: #c68a2d; }
 
 .edit-btn:hover {
-    background-color: #e0a800;
+    background: #a87020;
 }
 
-.delete-btn {
-    background-color: #dc3545;
-}
+.delete-btn { background: #bd5b58; }
 
 .delete-btn:hover {
-    background-color: #c82333;
+    background: #9d4745;
 }
 
 /* Stil für die neuen Symbol-Buttons */
-.icon-btn {
-    font-size: 16px;
-    width: 32px; /* Setzt eine feste Breite, um die Buttons gleich groß zu machen */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+.icon-btn { display: flex; align-items: center; justify-content: center; width: 31px; padding-right: 0 !important; padding-left: 0 !important; font-size: 15px !important; }
 
 
 /* Stil für die Benachrichtigung */
-.notification {
-    display: none; /* Standardmäßig versteckt */
-    position: fixed; /* Fixiert an der oberen Kante */
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 14px;
-    z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+.notification { display: none; position: fixed; top: 10px; left: 50%; z-index: 1000; transform: translateX(-50%); padding: 9px 15px; border-radius: 7px; color: white; background: #278b75; box-shadow: 0 4px 12px rgba(38, 50, 56, 0.18); font-size: 12px; }
 
 
 
@@ -163,78 +104,21 @@ button:hover {
     display: none;
 }
 
-.toggle-btn {
-    background-color: #6c757d;
-}
-
-.toggle-btn:hover {
-    background-color: #5a6268;
-}
+.toggle-btn { background: #40565a; }
+.toggle-btn:hover { background: #304448; }
 
 
-.buymeacoffee-btn {
-      display: block;
-      margin-top: 20px;
-      text-align: center;
-      text-decoration: none;
-      transition: transform 0.2s ease;
-    }
-    .buymeacoffee-btn:hover {
-      transform: translateY(-2px);
-    }
-    .buymeacoffee-btn img {
-      width: 125px;
-    }
-    .privacy-link {
-      display: block;
-      text-align: center;
-      margin-top: 10px;
-      font-size: 12px;
-      color: #777;
-      text-decoration: none;
-    }
-    .privacy-link:hover {
-      text-decoration: underline;
-    }
+.app-footer { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 4px; padding-top: 12px; border-top: 1px solid var(--line); }
+.buymeacoffee-btn, .privacy-link { color: var(--muted); font-size: 11px; text-decoration: none; transition: color 0.2s ease; }
+.buymeacoffee-btn { display: inline-flex; align-items: center; gap: 4px; }
+.buymeacoffee-btn:hover, .privacy-link:hover { color: var(--accent); text-decoration: underline; }
+.buymeacoffee-btn span { font-size: 13px; opacity: 0.8; }
 
 
 
 
 
-    /* Zusätzliche Styles für Drag-and-Drop */
-.snippet-item {
-    /* macht das Element verschiebbar */
-    cursor: grab; 
-}
-
-.snippet-item.dragging {
-    /* Der gezogene Gegenstand */
-    opacity: 0.5;
-    border: 2px dashed #007bff;
-}
-
-.snippet-item.drag-over-top {
-    /* Visuelle Markierung, wenn über einem Element gezogen wird, um es darüber zu platzieren */
-    border-top: 3px solid #007bff;
-}
-
-.snippet-item.drag-over-bottom {
-    /* Visuelle Markierung, wenn über einem Element gezogen wird, um es darunter zu platzieren */
-    border-bottom: 3px solid #007bff;
-}
-
-/* Entfernt den Cursor für die Buttons, da das gesamte Element verschiebbar ist */
-.snippet-item button {
-    cursor: pointer; 
-}
-
-
-
-/* Stil für den neuen Bearbeiten-Button */
-.edit-btn {
-    background-color: #ffc107; /* Gelb */
-}
-
-.edit-btn:hover {
-    background-color: #e0a800;
-}
+.snippet-item.dragging { opacity: 0.5; border: 2px dashed var(--accent); }
+.snippet-item.drag-over-top { border-top: 3px solid var(--accent); }
+.snippet-item.drag-over-bottom { border-bottom: 3px solid var(--accent); }
+.snippet-item button { cursor: pointer; }
